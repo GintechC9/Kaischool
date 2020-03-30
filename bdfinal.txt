@@ -1,0 +1,97 @@
+create database kaischool;
+
+use kaischool;
+
+create table MUsuario(
+clave_usu varchar(20) NOT NULL,
+password_usu varchar(20) NOT NULL,
+pregunta_usu int NOT NULL,
+respuesta_cue varchar(20) NOT NULL,
+tipo_usu int NOT NULL,
+codigoalu_usu varchar(5),
+estado_usu int NOT NULL,
+PRIMARY KEY(clave_usu));
+
+create table MJefe(
+num_jef int NOT NULL,
+clave_usu varchar(30),
+PRIMARY KEY(num_jef),
+FOREIGN KEY(clave_usu) REFERENCES MUsuario(clave_usu)
+ON DELETE RESTRICT
+ON UPDATE CASCADE
+);
+
+create table MGrupo(
+id_grup int NOT NULL AUTO_INCREMENT,
+nom_grup varchar(7) NOT NULL,
+num_jef int,
+PRIMARY KEY(id_grup),
+FOREIGN KEY(num_jef) REFERENCES MJefe(num_jef)
+ON DELETE RESTRICT
+ON UPDATE CASCADE
+);
+
+create table CEconomico(
+id_eco int NOT NULL AUTO_INCREMENT,
+resultado_eco int NOT NULL,
+PRIMARY KEY(id_eco));
+
+create table CPersonalidad(
+id_per int NOT NULL AUTO_INCREMENT,
+resultado_per int NOT NULL,
+PRIMARY KEY(id_per));
+
+create table MPreguntasR(
+id_pre int NOT NULL AUTO_INCREMENT,
+preN_pre int NOT NULL,
+PRIMARY KEY(id_pre));
+
+create table CRendimiento(
+id_ren int NOT NULL AUTO_INCREMENT,
+rendimiento_ren int NOT NULL,
+id_pre int,
+id_eco int,
+id_per int,
+PRIMARY KEY(id_ren),
+FOREIGN KEY(id_pre) REFERENCES MPreguntasR(id_pre),
+FOREIGN KEY(id_per) REFERENCES CPersonalidad(id_per),
+FOREIGN KEY(id_eco) REFERENCES CEconomico(id_eco)
+ON DELETE RESTRICT
+ON UPDATE CASCADE
+);
+
+create table MAlumno(
+bol_alu varchar(10) NOT NULL,
+clave_usu varchar(20),
+FOREIGN KEY(clave_usu) REFERENCES MUsuario(clave_usu),
+codigo_alu varchar(5),
+codigogrupo_alu varchar(5),
+id_ren int,
+codigogrupo_grup varchar(5),
+PRIMARY KEY(bol_alu),
+FOREIGN KEY(id_ren) REFERENCES CRendimiento(id_ren),
+FOREIGN KEY(id_grup) REFERENCES MGrupo(id_grup)
+ON DELETE RESTRICT
+ON UPDATE CASCADE
+);
+
+
+ceconomico           |
+cpersonalidad        |
+crendimiento         |
+malumno              |
+mgrupo               |
+mjefe                |
+mpreguntasr          |
+musuario	     |
+
+
+
+
+
+
+
+
+
+
+
