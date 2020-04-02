@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>AES JS</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+</head>
+<body>
+	<br>
+	<br>
+<strong></strong>
+	<label>
+		Cadena Original
+	</label>
+	<span id="demo1">
+		
+	</span>
+
+
+	<br>
+	<br>
+
+<strong></strong>
+	<label>
+		Cadena Cifrada
+	</label>
+	<span id="demo2">
+		
+	</span>
+
+
+	<br>
+	<br>
+<strong></strong>
+	<label>
+		Cadena Descifrada
+	</label>
+	<span id="demo3">
+		
+	</span>
+
+
+	<br>
+	<br>
+<strong></strong>
+	<label>
+		Antes del descifrado
+	</label>
+	<span id="demo4">
+		
+	</span>
+
+
+	<br>
+	<br>
+
+♥♥♥UWU♥♥♥
+	<script type="text/javascript">
+		
+		let cadena="había una vez un patito que decía miau miau";
+
+		let password="banacat";
+
+		let encriptar= CryptoJS.AES.encrypt(cadena,password);
+
+		let desencriptar=CryptoJS.AES.decrypt(cadena,password);
+		document.getElementById("demo1").innerHTML=cadena;
+		document.getElementById("demo2").innerHTML=encriptar;
+		document.getElementById("demo3").innerHTML=desencriptar;
+		document.getElementById("demo4").innerHTML=desencriptar.toString(Crypto.enc.Utf8);
+
+	</script>
+
+</body>
+</html>
