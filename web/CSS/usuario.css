@@ -20,7 +20,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#32e1ed', end
 }
 .azul-l{ color:rgb(40,196,216);
 }
-.azul-f2{background:rgb(40,196,216);
+.azul-f2{background:rgb(22,176,155);
 width:65%;}
 .espaciado{
     padding: 1rem;
@@ -29,12 +29,13 @@ width:65%;}
    background:rgb(242,248,255,0.8); 
    
 }
+
 .blanco-f{background:white;
-color:rgb(40,196,216);
+color:rgb(40,200,216);
 border-radius: 6px;
 padding: 10px;
-width: 60%;
-height: 40%;
+width: 50%;
+height: 50%;
 margin: .5rem;
 border-color:rgb(40,196,216); }
 
