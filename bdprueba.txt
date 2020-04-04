@@ -1,0 +1,98 @@
+create database kaischool;
+
+use kaischool;
+
+create table MUsuario(
+clave_usu varchar(20) NOT NULL PRIMARY KEY,
+password_usu varchar(20) NOT NULL,
+pregunta_usu int NOT NULL,
+respuesta_usu varchar(20) NOT NULL,
+tipo_usu int NOT NULL,
+codigoalu_usu varchar(5),
+estado_usu int NOT NULL
+
+);
+
+create table MJefe(
+num_jef varchar(10) NOT NULL,
+clave_usu varchar(30),
+PRIMARY KEY(num_jef),
+FOREIGN KEY(clave_usu) REFERENCES MUsuario(clave_usu)
+ON DELETE CASCADE
+ON UPDATE CASCADE
+);
+
+create table MGrupo(
+codigogrupo_grup varchar(5) PRIMARY KEY  NOT NULL,
+nom_grup varchar(10) NOT NULL,
+num_jef varchar(10) NOT NULL,
+FOREIGN KEY(num_jef) REFERENCES MJefe(num_jef)
+ON DELETE CASCADE
+ON UPDATE CASCADE
+);
+
+create table MPreguntasR(
+id_pre int NOT NULL AUTO_INCREMENT,
+ingreso_pre int,
+vivienda_pre int,
+trabajo_pre int,
+personalidad_pre int,
+PRIMARY KEY(id_pre));
+
+create table CRendimiento(
+id_ren int NOT NULL AUTO_INCREMENT,
+clave_usu varchar(20),
+rendimiento_ren int,
+resultadop_ren int,
+resultadoe_ren int,
+id_pre int,
+PRIMARY KEY(id_ren),
+FOREIGN KEY(clave_usu) REFERENCES MUsuario(clave_usu),
+FOREIGN KEY(id_pre) REFERENCES MPreguntasR(id_pre)
+ON DELETE CASCADE
+ON UPDATE CASCADE
+);
+
+create table MAlumno(
+bol_alu varchar(10) NOT NULL,
+clave_usu varchar(20),
+FOREIGN KEY(clave_usu) REFERENCES MUsuario(clave_usu),
+codigo_alu varchar(5),
+codigogrupo_alu varchar(5),
+id_ren int,
+pf_alu int,
+ph_alu int,
+pp_alu int,
+PRIMARY KEY(bol_alu),
+FOREIGN KEY(codigogrupo_alu) REFERENCES MGrupo(codigogrupo_grup),
+FOREIGN KEY(id_ren) REFERENCES CRendimiento(id_ren)
+ON DELETE CASCADE
+ON UPDATE CASCADE
+);
+
+create table calificaciones(
+boleta int NOT NULL PRIMARY KEY,
+P1_AFM1 int,
+P2_AFM1 int,
+P3_AFM1 int,
+P1_AHU1 int,
+P2_AHU1 int,
+P3_AHU1 int,
+P1_AFM2 int,
+P2_AFM2 int,
+P3_AFM2 int,
+P1_AHU2 int,
+P2_AHU2 int,
+P3_AHU2 int,
+P1_AFM3 int,
+P2_AFM3 int,
+P3_AFM3 int,
+P1_AHU3 int,
+P2_AHU3 int,
+P3_AHU3 int,
+P1_APR3 int,
+P2_APR3 int,
+P3_APR3 int,
+P1_AFM4 int,
+P1_AHU4 int,
+P1_APR4 int);
